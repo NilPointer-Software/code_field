@@ -17,7 +17,7 @@ class CodeField extends StatefulWidget {
   /// {@macro flutter.widgets.textField.smartQuotesType}
   final SmartQuotesType? smartQuotesType;
 
-/// {@macro flutter.widgets.textField.smartDashesType}
+  /// {@macro flutter.widgets.textField.smartDashesType}
   final SmartDashesType? smartDashesType;
 
   /// {@macro flutter.widgets.textField.keyboardType}
@@ -82,6 +82,7 @@ class CodeField extends StatefulWidget {
   final String? hintText;
   final TextStyle? hintStyle;
   final CodeAutoComplete? autoComplete;
+  final ScrollController? horizontalScrollController;
 
   const CodeField({
     Key? key,
@@ -115,6 +116,7 @@ class CodeField extends StatefulWidget {
     this.autoComplete,
     this.textInputAction,
     this.enableSuggestions = false,
+    this.horizontalScrollController,
   }) : super(key: key);
 
   @override
@@ -236,6 +238,8 @@ class _CodeFieldState extends State<CodeField> {
             )
           : MediaQuery.of(context),
       child: SingleChildScrollView(
+        primary: false,
+        controller: widget.horizontalScrollController,
         padding: EdgeInsets.only(
           left: leftPad,
           right: widget.padding.right,
